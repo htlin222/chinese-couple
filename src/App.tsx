@@ -167,7 +167,7 @@ const CoupletDisplay = () => {
           className="px-8 py-2 bg-yellow-300 text-red-600 rounded text-xl font-bold hover:bg-yellow-400 focus:outline-none"
           style={{ fontFamily: "'Noto Serif TC', serif" }}
         >
-          {fireworksEnabled ? '停止煙火' : '開始煙火，按X'}
+          {fireworksEnabled ? '停止煙火' : '開始煙火'}
         </button>
         <div className="flex flex-col items-center gap-2">
           <label 
