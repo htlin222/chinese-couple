@@ -4,7 +4,7 @@ import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "src/lib/utils"
 
-const MenubarMenu = MenubarPrimitive.Menu
+const MenubarMenu = MenubarPrimitive.Menu as React.FC<React.ComponentProps<typeof MenubarPrimitive.Menu>>
 
 const MenubarGroup = MenubarPrimitive.Group
 
