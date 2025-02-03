@@ -50,6 +50,29 @@ const CoupletDisplay = () => {
     localStorage.setItem('fireworksFriction', friction.toString());
   }, [friction]);
 
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+        return; // Don't trigger shortcuts when typing in input fields
+      }
+      
+      switch (e.key.toLowerCase()) {
+        case 'f':
+          toggleFullscreen();
+          break;
+        case 'e':
+          openEditor();
+          break;
+        case 'x':
+          toggleFireworks();
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
@@ -75,6 +98,9 @@ const CoupletDisplay = () => {
     if (fireworksEnabled) {
       leftFireworksRef.current?.clear();
       rightFireworksRef.current?.clear();
+    } else {
+      leftFireworksRef.current?.start();
+      rightFireworksRef.current?.start();
     }
     setFireworksEnabled(!fireworksEnabled);
   };
@@ -127,21 +153,21 @@ const CoupletDisplay = () => {
           className="px-8 py-2 bg-yellow-300 text-red-600 rounded text-xl font-bold hover:bg-yellow-400 focus:outline-none"
           style={{ fontFamily: "'Noto Serif TC', serif" }}
         >
-          編輯
+          編輯，按E
         </button>
         <button 
           onClick={toggleFullscreen}
           className="px-8 py-2 bg-yellow-300 text-red-600 rounded text-xl font-bold hover:bg-yellow-400 focus:outline-none"
           style={{ fontFamily: "'Noto Serif TC', serif" }}
         >
-          {isFullscreen ? '退出全螢幕' : '全螢幕'}
+          {isFullscreen ? '退出全螢幕' : '全螢幕，按F'}
         </button>
         <button 
           onClick={toggleFireworks}
           className="px-8 py-2 bg-yellow-300 text-red-600 rounded text-xl font-bold hover:bg-yellow-400 focus:outline-none"
           style={{ fontFamily: "'Noto Serif TC', serif" }}
         >
-          {fireworksEnabled ? '停止煙火' : '開始煙火'}
+          {fireworksEnabled ? '停止煙火' : '開始煙火，按X'}
         </button>
         <div className="flex flex-col items-center gap-2">
           <label 
@@ -303,23 +329,23 @@ const CoupletEditor = () => {
           </div>
 
           <div className="mb-6">
-            <label className="block text-yellow-300 text-lg mb-2" style={{ fontFamily: "'Noto Serif TC', serif" }}>左聯：</label>
-            <input 
-              type="text"
-              className="w-full p-2 bg-red-800 text-yellow-300 text-xl border-2 border-yellow-300 rounded focus:outline-none h-12"
-              value={editLeftText}
-              onChange={(e) => setEditLeftText(e.target.value)}
-              style={{ fontFamily: "'Noto Serif TC', serif", fontWeight: 800 }}
-            />
-          </div>
-
-          <div className="mb-6">
             <label className="block text-yellow-300 text-lg mb-2" style={{ fontFamily: "'Noto Serif TC', serif" }}>右聯：</label>
             <input 
               type="text"
               className="w-full p-2 bg-red-800 text-yellow-300 text-xl border-2 border-yellow-300 rounded focus:outline-none h-12"
               value={editRightText}
               onChange={(e) => setEditRightText(e.target.value)}
+              style={{ fontFamily: "'Noto Serif TC', serif", fontWeight: 800 }}
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-yellow-300 text-lg mb-2" style={{ fontFamily: "'Noto Serif TC', serif" }}>左聯：</label>
+            <input 
+              type="text"
+              className="w-full p-2 bg-red-800 text-yellow-300 text-xl border-2 border-yellow-300 rounded focus:outline-none h-12"
+              value={editLeftText}
+              onChange={(e) => setEditLeftText(e.target.value)}
               style={{ fontFamily: "'Noto Serif TC', serif", fontWeight: 800 }}
             />
           </div>
@@ -361,8 +387,8 @@ const CoupletEditor = () => {
               <div key={preset.id} className="bg-red-800 rounded-lg p-4 flex flex-col">
                 <h3 className="text-yellow-300 text-xl mb-2" style={{ fontFamily: "'Noto Serif TC', serif" }}>{preset.name}</h3>
                 <div className="text-yellow-300 mb-2" style={{ fontFamily: "'Noto Serif TC', serif" }}>字體大小: {preset.fontSize}px</div>
-                <div className="text-yellow-300 mb-1" style={{ fontFamily: "'Noto Serif TC', serif", fontWeight: 800 }}>左聯: {preset.left}</div>
-                <div className="text-yellow-300 mb-4" style={{ fontFamily: "'Noto Serif TC', serif", fontWeight: 800 }}>右聯: {preset.right}</div>
+                <div className="text-yellow-300 mb-1" style={{ fontFamily: "'Noto Serif TC', serif", fontWeight: 800 }}>右聯: {preset.right}</div>
+                <div className="text-yellow-300 mb-4" style={{ fontFamily: "'Noto Serif TC', serif", fontWeight: 800 }}>左聯: {preset.left}</div>
                 <div className="flex gap-2 mt-auto">
                   <button
                     onClick={() => loadPreset(preset)}
