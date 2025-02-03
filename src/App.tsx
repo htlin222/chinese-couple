@@ -36,7 +36,7 @@ const useCoupletSync = (initialLeft: string, initialRight: string) => {
 };
 
 const CoupletDisplay = () => {
-  const { displayLeftText, displayRightText, fontSize } = useCoupletSync('和風拂柳春將至', '信步醉酒月初圓');
+  const { displayLeftText, displayRightText, fontSize } = useCoupletSync('信步醉酒月初圓', '和風拂柳春將至');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [friction, setFriction] = useState(() => {
     const savedFriction = localStorage.getItem('fireworksFriction');
