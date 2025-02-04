@@ -240,6 +240,14 @@ const CoupletDisplay = () => {
 };
 
 const CoupletEditor = () => {
+  const [editRightText, setEditRightText] = useState(() => {
+    const savedData = localStorage.getItem('coupletData');
+    if (savedData) {
+      const data = JSON.parse(savedData);
+      return data.right || '和眾共迎春風至，看誰笑語獎落誰家';
+    }
+    return '和眾共迎春風至，看誰笑語獎落誰家';
+  });
   const [editLeftText, setEditLeftText] = useState(() => {
     const savedData = localStorage.getItem('coupletData');
     if (savedData) {
@@ -249,14 +257,6 @@ const CoupletEditor = () => {
     return '春風送暖入屠蘇';
   });
   
-  const [editRightText, setEditRightText] = useState(() => {
-    const savedData = localStorage.getItem('coupletData');
-    if (savedData) {
-      const data = JSON.parse(savedData);
-      return data.right || '明月催詩題桃李';
-    }
-    return '明月催詩題桃李';
-  });
 
   const [fontSize, setFontSize] = useState(64); // Default font size in pixels
   const [presetName, setPresetName] = useState('');

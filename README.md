@@ -1,5 +1,7 @@
 # Couple: A Poetic Couplet Display App
 
+[Online Preview](https://chinese-couple.netlify.app/)
+
 [中文說明](README.zhtw.md)
 
 ## Overview
