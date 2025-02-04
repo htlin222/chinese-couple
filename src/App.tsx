@@ -244,7 +244,7 @@ const CoupletEditor = () => {
     const savedData = localStorage.getItem('coupletData');
     if (savedData) {
       const data = JSON.parse(savedData);
-      return data.left || '春風送暖入屠蘇';
+      return data.left || '信步輕移好運臨，願得圓夢福滿人間';
     }
     return '春風送暖入屠蘇';
   });

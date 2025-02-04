@@ -1,4 +1,59 @@
-# Claude Artifact Runner
+# Couple: A Poetic Couplet Display App
 
-在新版的 React （從 v17 開始） 中，React 不再需要在每個檔案中顯式引入來使用 JSX。要解決這個錯誤，您可以：1. 移除未使用的 React：
-如果您的專案使用的是 React 17+，直接移除 import React 即可：
+[中文說明](README.zhtw.md)
+
+## Overview
+
+![alt text](image.png)
+
+Couple is an elegant web application that displays and edits Chinese couplets (對聯) with interactive features like fullscreen mode, fireworks, and synchronized text across multiple windows.
+
+## Features
+
+- **Dynamic Couplet Display**: View traditional Chinese couplets in a vertical, upright layout
+- **Interactive Editing**: Open an editor to modify the couplet text
+- **Fullscreen Mode**: Toggle fullscreen with a button or keyboard shortcut
+- **Fireworks Animation**: Add festive fireworks with adjustable friction
+- **Cross-Window Synchronization**: Sync couplet text and settings across different browser windows
+
+## Keyboard Shortcuts
+
+- `E`: Open Editor
+- `F`: Toggle Fullscreen
+- `X`: Toggle Fireworks
+
+## Technologies
+
+- React
+- TypeScript
+- Tailwind CSS
+- React Router
+- Fireworks.js
+
+## Local Development
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
+
+## Dependencies
+
+- `@fireworks-js/react`: For fireworks animation
+- `react-router-dom`: For routing
+- `tailwindcss`: For styling
+
+## Customization
+
+You can customize:
+- Couplet text
+- Font size
+- Fireworks friction
+- Color scheme
+
+## Inspiration
+
+Inspired by traditional Chinese poetry and the beauty of linguistic symmetry.
+
+## License
+
+MIT License
